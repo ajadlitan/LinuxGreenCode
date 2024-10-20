@@ -3,7 +3,7 @@ pipeline {
     
     environment {
 	    PROJECT_NAME = "Sample Application"
-		REPO_PATH = "\\var\\lib\\jenkins\\workspace\\GreenTechNavigator"
+		REPO_PATH = "\\var\\lib\\jenkins\\workspace\\GreenCode"
 		PYTHON_PATH = "\\usr\\bin\\python3"
 		PYTEST_PATH = "\\usr\\bin\\pytest"
 		PATH = "\\usr\\share\\maven\\bin\\;$PATH"
