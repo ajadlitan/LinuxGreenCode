@@ -4,9 +4,9 @@ pipeline {
     environment {
 	    PROJECT_NAME = "Sample Application"
 		REPO_PATH = "\\var\\lib\\jenkins\\workspace\\GreenCode"
-		PYTHON_PATH = "\\usr\\bin\\python3"
-		PYTEST_PATH = "\\usr\\bin\\pytest"
-		PATH = "\\usr\\share\\maven\\bin\\;$PATH"
+		PYTHON_PATH = "/home/ajad/pyenv/bin/python3"
+		PYTEST_PATH = "/home/ajad/pyenv/bin/pytest"
+		PATH = "/usr/bin/mvn:$PATH"
 	}
     
     stages {
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 dir("${env.REPO_PATH}") {
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                        bat "${env.PYTHON_PATH} server_emissions.py"
+                        sh "${env.PYTHON_PATH} server_emissions.py"
                     }
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 dir("${env.REPO_PATH}") {
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                        bat "${env.PYTHON_PATH} GreenCodeRefiner.py"
+                        sh "${env.PYTHON_PATH} GreenCodeRefiner.py"
                     }
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
                 dir("${env.REPO_PATH}") {
                     withEnv(["PYTEST=${env.PYTEST_PATH}"]) {
                         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                            bat "${env.PYTHON_PATH} track_emissions.py"
+                            sh "${env.PYTHON_PATH} track_emissions.py"
                         }
                     }
                 }
